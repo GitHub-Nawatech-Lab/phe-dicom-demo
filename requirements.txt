@@ -1,0 +1,7 @@
+numpy
+simpleitk
+matplotlib
+plotly
+mpld3
+fastapi
+uvicorn
