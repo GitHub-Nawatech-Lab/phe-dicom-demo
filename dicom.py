@@ -1,7 +1,7 @@
 import numpy as np # linear algebra
 import SimpleITK as sitk
-from azure.storage.fileshare import ShareDirectoryClient, ShareFileClient
-from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
+# from azure.storage.fileshare import ShareDirectoryClient, ShareFileClient
+# from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 import tempfile
 import os
 
