@@ -10,6 +10,10 @@ API_KEY="0PfSuTqMuPrKPrJLs9IblYvzslI4u9GsgcayLVSaD4reu79gq1DFv1rRuw7GXqF2i5rsWS2
 
 api_key = APIKeyHeader(name="api-key", auto_error=False)
 
+folder_ddr = "dicom_ddr"
+folder_lung = "dicom_lung"
+folder_mri = "dicom_mri"
+
 def get_api_key(
     api_key: str = Security(api_key),
 ) -> str:
