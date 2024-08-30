@@ -64,7 +64,7 @@ async def process_dicom(downsampling_factor: int, angle_style: int, threshold: i
         raise HTTPException(status_code=400, detail=str(e))
 
 @app.get("/process_dicom/ddr_truncate/", response_model=Item)
-async def process_dicom(downsampling_factor: int, angle_style: int, threshold: int, api_key: str = Security(get_api_key)) :
+async def process_dicom_truncate(downsampling_factor: int, angle_style: int, threshold: int, api_key: str = Security(get_api_key)) :
     try :
         series_array = read_series(settings.DDR_TRUNC_PATH)
         series_downsampled = downsampling(series_array, downsampling_factor)
