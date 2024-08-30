@@ -63,6 +63,27 @@ async def process_dicom(downsampling_factor: int, angle_style: int, threshold: i
     except Exception as e :
         raise HTTPException(status_code=400, detail=str(e))
 
+@app.get("/process_dicom/ddr_truncate/", response_model=Item)
+async def process_dicom(downsampling_factor: int, angle_style: int, threshold: int, api_key: str = Security(get_api_key)) :
+    try :
+        series_array = read_series(settings.DDR_TRUNC_PATH)
+        series_downsampled = downsampling(series_array, downsampling_factor)
+        series_downsampled = change_angle(series_downsampled, angle_style)
+        x, y, z = get_axis_series(series_downsampled, threshold)
+        clean_dicom = {
+            "downsampling_factor" : downsampling_factor,
+            "angle_style" : angle_style,
+            "threshold" : threshold,
+            "data" : {
+                "x" : x.tolist(),
+                "y" : y.tolist(),
+                "z" : z.tolist()
+            }
+        }
+        return clean_dicom
+    except Exception as e :
+        raise HTTPException(status_code=400, detail=str(e))
+
 @app.get("/process_dicom/lung/", response_model=Item)
 async def process_dicom(downsampling_factor: int, angle_style: int, threshold: int, api_key: str = Security(get_api_key)) :
     try :
